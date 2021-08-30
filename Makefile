@@ -26,6 +26,23 @@ lint: ## Run linters: eslint
 ts-check: ## Check Typescript correctness
 	./node_modules/.bin/tsc --noEmit
 
+.PHONY: build
+build: build-esm build-cjs ## Build all modules
+
+.PHONY: build-cjs
+build-cjs: ## Build CommonJS modules
+	./node_modules/.bin/tsc --module commonjs --outDir dist/cjs
+
+.PHONY: build-esm
+build-esm: ## Build ES modules
+	./node_modules/.bin/tsc
+
+
+.PHONY: clean
+clean: ## Clean all build files
+	rm -rf dist
+
+
 .PHONY: setup
 setup: ## Setup development environment
 	@echo 'Requires pre-commit from https://pre-commit.com/'

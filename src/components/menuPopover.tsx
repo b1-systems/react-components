@@ -25,7 +25,7 @@ interface LinkProps {
   href: string;
 }
 
-export default function MenuPopover(props: Props) {
+const MenuPopover = (props: Props) => {
   const handleclose = () => {
     props.setAnchorElement(null);
   };
@@ -128,4 +128,5 @@ export default function MenuPopover(props: Props) {
       </Paper>
     </Popover>
   );
-}
+};
+export default MenuPopover;

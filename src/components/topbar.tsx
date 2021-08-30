@@ -114,7 +114,7 @@ interface Props {
   applicationTitle?: string | ReactNode;
 }
 
-export const TopBar = (props: Props) => {
+const TopBar = (props: Props) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(menuAnchorEl);
   const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
@@ -162,3 +162,5 @@ export const TopBar = (props: Props) => {
     </>
   );
 };
+
+export default TopBar;

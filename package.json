@@ -3,7 +3,6 @@
   "bugs": {
     "url": "https://github.com/b1-systems/react-components/issues"
   },
-  "description": "Loose collection of React components",
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -13,6 +12,7 @@
     "react-hot-toast": "^2.1.1",
     "react-router-dom": "^5.2.1"
   },
+  "description": "Loose collection of React components",
   "devDependencies": {
     "@types/node": "^16.7.2",
     "@types/react": "^17.0.19",
@@ -39,6 +39,9 @@
       "react-app/jest"
     ]
   },
+  "files": [
+    "dist/"
+  ],
   "homepage": "https://github.com/b1-systems/react-components#readme",
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
@@ -52,7 +55,8 @@
     "mui"
   ],
   "license": "LGPL-3.0-or-later",
-  "main": "index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "name": "b1-react-components",
   "peerDependencies": {
     "react": "^17.0.2",

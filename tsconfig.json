@@ -15,7 +15,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
-    "outDir": "dist",
+    "outDir": "dist/esm",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
