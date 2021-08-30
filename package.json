@@ -1,24 +1,69 @@
 {
-  "name": "b1-react-components",
-  "version": "0.0.1",
-  "description": "Loose collection of React components",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Tilman Lüttje <luettje@b1-systems.de>",
+  "bugs": {
+    "url": "https://github.com/b1-systems/react-components/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/b1-systems/react-components.git"
+  "description": "Loose collection of React components",
+  "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^5.0.0-beta.5",
+    "@material-ui/icons": "^5.0.0-beta.5",
+    "@material-ui/lab": "^5.0.0-alpha.44",
+    "react-hot-toast": "^2.1.1",
+    "react-router-dom": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.2",
+    "@types/react": "^17.0.19",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.1.8",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "import-sort-style-module": "^6.0.0",
+    "prettier": "^2.3.2",
+    "prettier-plugin-import-sort": "^0.0.7",
+    "typescript": "^4.4",
+    "typescript-estree": "^18.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "homepage": "https://github.com/b1-systems/react-components#readme",
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "parser": "typescript",
+      "style": "module"
+    }
   },
   "keywords": [
     "react",
     "material-ui",
     "mui"
   ],
-  "author": "Tilman Lüttje <luettje@b1-systems.de>",
   "license": "LGPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/b1-systems/react-components/issues"
+  "main": "index.js",
+  "name": "b1-react-components",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
-  "homepage": "https://github.com/b1-systems/react-components#readme"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b1-systems/react-components.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
 }

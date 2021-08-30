@@ -1,0 +1,20 @@
+---
+fail_fast: true
+repos:
+  - repo: local
+    hooks:
+      - id: format
+        name: Code formatting check
+        entry: make format-check
+        pass_filenames: false
+        language: system
+      - id: lint
+        name: Run linters
+        entry: make lint
+        pass_filenames: false
+        language: system
+      - id: tsc
+        name: Typescript check
+        entry: make ts-check
+        pass_filenames: false
+        language: system
