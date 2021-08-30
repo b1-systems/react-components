@@ -1,4 +1,4 @@
-/*g
+/*
  * Simple Topbar with the following (mostly optional) features:
  *
  * - Application title as either a string or a finished node
