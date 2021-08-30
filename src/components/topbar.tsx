@@ -125,7 +125,7 @@ const TopBar = (props: Props) => {
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          {props.menuEntries && (
+          {props.menuEntries.length != 0 && (
             <>
               <IconButton aria-label="menu" onClick={handleMenuClick} size="large">
                 <MenuIcon />

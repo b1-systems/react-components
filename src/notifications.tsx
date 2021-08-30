@@ -48,7 +48,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const Toastyfier = (props: Props) => {
+const Toastyfier = (props: Props) => {
   const [pastNotifications, setPastNotifications] = useState<Array<PastNotification>>(
     [],
   );
@@ -117,7 +117,7 @@ export const Toastyfier = (props: Props) => {
   );
 };
 
-export const useToasty = () => {
+const useToasty = () => {
   const context = useContext(NotificationContext);
 
   if (context === undefined) {
@@ -126,3 +126,5 @@ export const useToasty = () => {
 
   return context;
 };
+
+export { Toastyfier, useToasty };
