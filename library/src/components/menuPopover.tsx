@@ -81,9 +81,9 @@ const MenuPopover = (props: Props) => {
       }
     });
     return (
-      <Grid container spacing={4}>
+      <Grid container spacing={4} sx={{ minWidth: 400 }}>
         {topEntries.map((topEntry) => (
-          <Grid item xs={4} key={topEntry.entryId}>
+          <Grid item xs={6} key={topEntry.entryId}>
             <Typography variant="h6" gutterBottom color="primary">
               {buildLink(topEntry)}
             </Typography>

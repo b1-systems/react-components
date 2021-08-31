@@ -1,4 +1,4 @@
-import { Toastyfier, TopBar, useToasty } from "@b1-systems/react-components";
+import { MenuEntry, Toastyfier, TopBar, useToasty } from "@b1-systems/react-components";
 import {
   AlertColor,
   Box,
@@ -33,6 +33,36 @@ const NotificationButtons = () => {
   );
 };
 
+const menuEntries: Array<MenuEntry> = [
+  {
+    entryId: "subpage1_category",
+    type: "entry",
+    parent: "",
+    caption: "Category 1",
+    action: "router",
+    targetUrl: "/subpage1",
+    icon: "",
+  },
+  {
+    entryId: "subpage1_entry",
+    type: "entry",
+    parent: "subpage1_category",
+    caption: "Entry 1",
+    action: "router",
+    targetUrl: "/subpage1",
+    icon: "",
+  },
+  {
+    entryId: "mainpage",
+    type: "entry",
+    parent: "",
+    caption: "Mainpage",
+    action: "router",
+    targetUrl: "/",
+    icon: "",
+  },
+];
+
 const DemoApp = () => {
   const { toasty } = useToasty();
   return (
@@ -40,7 +70,7 @@ const DemoApp = () => {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <TopBar
-          menuEntries={[]}
+          menuEntries={menuEntries}
           logoutAction={() => toasty.success("Logout complete!")}
           applicationTitle={
             <Link component={RouterLink} to="/" color="inherit">

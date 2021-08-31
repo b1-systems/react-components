@@ -1,1 +1,1 @@
-declare module '@b1-systems/react-components'
+dist/esm/index.d.ts
