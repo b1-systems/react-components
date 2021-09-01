@@ -32,7 +32,7 @@ lint: ## Run linters: eslint
 
 .PHONY: ts-check
 ts-check: ## Run tsc in check mode
-	tsc --project library --noEmit
+	tsc --project library
 	tsc --project react-components-example --noEmit
 
 .PHONY: libbuild
