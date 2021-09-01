@@ -17,4 +17,5 @@ The `react-components-example` contains a demo application to showcase the
 provided components. Simply run the following commands:
 
 - `$ npm install`
+- `$ make libbuild`
 - `$ make run-demo`

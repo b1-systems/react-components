@@ -19,8 +19,8 @@ The demo application (`react-components-example`) serves two purposes:
 1. Presenting the existing components with some code to copy-paste.
 2. Instantly see your changes when you're making changes to the library.
 
-Run the following commands in two separate terminals to see you library changes
-live:
+Run the following commands in two separate terminals to see your library
+changes in real time:
 
 - `$ make run-demo`
 - `$ make libbuild-dev`

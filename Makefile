@@ -9,6 +9,10 @@ help: ## Display this help message
 	    sort | \
 	    awk -F ':.*?## ' 'NF==2 {printf "  %-26s%s\n", $$1, $$2}'
 
+.PHONY: clean
+clean: ## Remove all build and dist folders
+	rm -rf library/dist react-components-example/build
+
 SRC_DIRS=library/src react-components-example/src
 
 .PHONY: format
@@ -36,7 +40,7 @@ libbuild: libbuild-esm libbuild-cjs ## Build all modules
 
 .PHONY: libbuild-cjs
 libbuild-cjs: ## Build CommonJS modules
-	tsc --project library --module commonjs --outDir dist/cjs
+	tsc --project library --module commonjs --outDir library/dist/cjs
 
 .PHONY: libbuild-esm
 libbuild-esm: ## Build ES modules
