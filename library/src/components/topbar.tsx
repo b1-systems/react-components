@@ -87,16 +87,20 @@ const NotificationHistory = (props: NotificationHistoryProps) => {
             {props.pastNotifications}
           </Typography>
           {pastNotifications.length ? (
-            pastNotifications.map((notification, index) => (
-              <Alert
-                severity={notification.severity}
-                sx={{ m: 1, minWidth: 400 }}
-                key={index}
-              >
-                <AlertTitle>{props.createdAtFormat(notification.createdAt)}</AlertTitle>
-                {notification.msg}
-              </Alert>
-            ))
+            pastNotifications
+              .sort((a, b) => b.createdAt - a.createdAt)
+              .map((notification, index) => (
+                <Alert
+                  severity={notification.severity}
+                  sx={{ m: 1, minWidth: 400 }}
+                  key={index}
+                >
+                  <AlertTitle>
+                    {props.createdAtFormat(notification.createdAt)}
+                  </AlertTitle>
+                  {notification.msg}
+                </Alert>
+              ))
           ) : (
             <Typography align="center" sx={{ m: 5 }}>
               {props.noNotificationsYet}
