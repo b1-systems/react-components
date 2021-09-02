@@ -8,10 +8,25 @@
     "react-hot-toast": "^2.1.1"
   },
   "description": "Loose collection of React components",
+  "devDependencies": {
+    "@types/jest": "^27.0.1"
+  },
   "files": [
     "dist/"
   ],
   "homepage": "https://github.com/b1-systems/react-components#readme",
+  "jest": {
+    "clearMocks": true,
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageProvider": "v8",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  },
   "keywords": [
     "react",
     "material-ui",
@@ -32,6 +47,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/b1-systems/react-components.git"
+  },
+  "scripts": {
+    "test": "jest"
   },
   "version": "0.0.1"
 }

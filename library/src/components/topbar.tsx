@@ -40,7 +40,7 @@ interface NotificationHistoryProps {
 // Keeping this in a separate component supports usage of the `TopBar`
 // component without the notifications since `useToasty` without the required
 // context will throw an error
-const NotificationHistory = (props: NotificationHistoryProps) => {
+export const NotificationHistory = (props: NotificationHistoryProps) => {
   const [toastHistoryAnchorEl, setToastHistoryAnchorEl] = useState<null | HTMLElement>(
     null,
   );
@@ -129,7 +129,7 @@ const TopBar = (props: Props) => {
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          {props.menuEntries.length != 0 && (
+          {props.menuEntries.length !== 0 && (
             <>
               <IconButton aria-label="menu" onClick={handleMenuClick} size="large">
                 <MenuIcon />

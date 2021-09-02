@@ -23,7 +23,10 @@
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/**/*.test.ts*",
+    "src/**/__tests__",
+    "src/setupTests.*"
   ],
   "include": [
     "src"

@@ -28,17 +28,24 @@ jobs:
           scope: "@b1-systems"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: run checks
+      - name: Install
+        run: npm install
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: run checks and tests
         run: |
           npm install
           make check
+          make test
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: build library
         run: make libbuild
       - name: npm try to publish the package if it's a new version
+        # fails if the same version is already published
         continue-on-error: true
-        run: npm -w library publish
+        run: make publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

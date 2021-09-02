@@ -54,6 +54,10 @@ run-demo: ## Start the demo application
 libbuild-dev: ## Run tsc in watcher mode
 	tsc --project library --watch
 
+.PHONY: test
+test: ## Run tests
+	npm -w library run test
+
 .PHONY: publish
 publish: libbuild ## Publish library to registry
 	npm -w library publish
