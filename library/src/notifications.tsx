@@ -13,7 +13,7 @@
  * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.html
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
-import { Alert, AlertColor } from "@mui/material";
+import { Alert, AlertColor, Slide } from "@mui/material";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { Toast, ToastPosition } from "react-hot-toast/dist/core/types";
@@ -42,11 +42,29 @@ interface ToastyProps {
   close?: boolean;
 }
 
+type SlideDirection = "down" | "left" | "right" | "up";
+
 interface Props {
   position: ToastPosition;
   gutter: number;
   children: ReactNode;
+  slideDirection?: SlideDirection;
 }
+
+const autoSlideDirection = (position: ToastPosition): SlideDirection => {
+  switch (position) {
+    case "bottom-left":
+    case "top-left":
+      return "right";
+    case "bottom-right":
+    case "top-right":
+      return "left";
+    case "top-center":
+      return "down";
+    case "bottom-center":
+      return "up";
+  }
+};
 
 const Toastyfier = (props: Props) => {
   const [pastNotifications, setPastNotifications] = useState<Array<PastNotification>>(
@@ -64,14 +82,19 @@ const Toastyfier = (props: Props) => {
       { msg: msg, severity: severity, createdAt: new Date().getTime() },
     ]);
     return toast.custom((t: Toast) => (
-      <Alert
-        variant="filled"
-        sx={{ maxWidth: 400 }}
-        severity={severity}
-        onClose={toastyProps?.close ? () => toast.dismiss(t.id) : () => {}}
+      <Slide
+        direction={props.slideDirection || autoSlideDirection(props.position)}
+        in={t.visible}
       >
-        {msg}
-      </Alert>
+        <Alert
+          variant="filled"
+          sx={{ maxWidth: 400 }}
+          severity={severity}
+          onClose={toastyProps?.close ? () => toast.dismiss(t.id) : undefined}
+        >
+          {msg}
+        </Alert>
+      </Slide>
     ));
   };
 

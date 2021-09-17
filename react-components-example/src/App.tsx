@@ -23,7 +23,9 @@ const NotificationButtons = () => {
           // @ts-ignore
           color={severity}
           onClick={() =>
-            toasty(`${severity.toUpperCase()} notification`, severity as AlertColor)
+            toasty(`${severity.toUpperCase()} notification`, severity as AlertColor, {
+              close: true,
+            })
           }
         >
           {`${severity.toUpperCase()} notification`}
