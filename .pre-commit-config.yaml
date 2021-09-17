@@ -18,3 +18,8 @@ repos:
         entry: make ts-check
         pass_filenames: false
         language: system
+      - id: tests
+        name: Jest
+        entry: make test
+        pass_filenames: false
+        language: system

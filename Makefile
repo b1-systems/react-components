@@ -35,19 +35,26 @@ ts-check: ## Run tsc in check mode
 	tsc --project library
 	tsc --project react-components-example --noEmit
 
+node_modules/.package-lock.json: package.json react-components-example/package.json library/package.json
+	npm install
+
+.PHONY: install
+install: node_modules/.package-lock.json ## Runs `npm i` if any package.json files has changed
+
+
 .PHONY: libbuild
 libbuild: libbuild-esm libbuild-cjs ## Build all modules
 
 .PHONY: libbuild-cjs
-libbuild-cjs: ## Build CommonJS modules
+libbuild-cjs: install ## Build CommonJS modules
 	tsc --project library --module commonjs --outDir library/dist/cjs
 
 .PHONY: libbuild-esm
-libbuild-esm: ## Build ES modules
+libbuild-esm: install ## Build ES modules
 	tsc --project library
 
 .PHONY: run-demo
-run-demo: ## Start the demo application
+run-demo: libbuild-esm ## Start the demo application
 	npm -w react-components-example run start
 
 .PHONY: libbuild-dev
