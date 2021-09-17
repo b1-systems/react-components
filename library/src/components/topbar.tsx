@@ -1,3 +1,6 @@
+import { LogoutOutlined } from "@mui/icons-material";
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import MenuIcon from "@mui/icons-material/Menu";
 /*
  * Simple Topbar with the following (mostly optional) features:
  *
@@ -21,10 +24,7 @@ import {
   Popover,
   Toolbar,
   Typography,
-} from "@material-ui/core";
-import { LogoutOutlined } from "@material-ui/icons";
-import CircleNotificationsIcon from "@material-ui/icons/CircleNotifications";
-import MenuIcon from "@material-ui/icons/Menu";
+} from "@mui/material";
 import { MouseEvent, ReactNode, useState } from "react";
 
 import { useToasty } from "../notifications";

@@ -5,10 +5,7 @@
  * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.html
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
-import { Link, Paper } from "@material-ui/core";
-import { Typography } from "@material-ui/core";
-import Grid from "@material-ui/core/Grid";
-import Popover from "@material-ui/core/Popover";
+import { Grid, Link, Paper, Popover, Typography } from "@mui/material";
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 

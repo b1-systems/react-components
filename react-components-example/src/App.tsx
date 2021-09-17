@@ -9,7 +9,7 @@ import {
   Link,
   Toolbar,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { BrowserRouter, Route, Link as RouterLink, Switch } from "react-router-dom";
 
 const NotificationButtons = () => {

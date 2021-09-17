@@ -13,7 +13,7 @@
  * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.html
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
-import { Alert, AlertColor } from "@material-ui/core";
+import { Alert, AlertColor } from "@mui/material";
 import { ReactNode, createContext, useContext, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { Toast, ToastPosition } from "react-hot-toast/dist/core/types";
