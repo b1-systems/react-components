@@ -11,6 +11,9 @@ road. Based on [_Material-UI_](https://material-ui.com).
 - Topbar with multiple optional integrations, including the components/features
   mentioned above
 
+A more in-depth explanation of the single components can be found inside the `README`
+file of the library.
+
 ## Demo application
 
 The `react-components-example` contains a demo application to showcase the provided
