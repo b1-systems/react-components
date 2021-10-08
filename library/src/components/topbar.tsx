@@ -1,6 +1,7 @@
 import { LogoutOutlined } from "@mui/icons-material";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import MenuIcon from "@mui/icons-material/Menu";
+import TranslateIcon from "@mui/icons-material/Translate";
 /*
  * Simple Topbar with the following (mostly optional) features:
  *
@@ -20,9 +21,12 @@ import {
   AlertTitle,
   AppBar,
   IconButton,
+  Menu,
+  MenuItem,
   Paper,
   Popover,
   Toolbar,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { MouseEvent, ReactNode, useState } from "react";
@@ -53,14 +57,16 @@ export const NotificationHistory = (props: NotificationHistoryProps) => {
 
   return (
     <>
-      <IconButton
-        aria-label="menu"
-        onClick={handleToastHistoryClick}
-        size="large"
-        color="inherit"
-      >
-        <CircleNotificationsIcon />
-      </IconButton>
+      <Tooltip title={props.pastNotifications}>
+        <IconButton
+          aria-label="menu"
+          onClick={handleToastHistoryClick}
+          size="large"
+          color="inherit"
+        >
+          <CircleNotificationsIcon />
+        </IconButton>
+      </Tooltip>
       <Popover
         sx={{ maxHeight: "60%" }}
         open={toastHistoryOpen}
@@ -111,11 +117,20 @@ export const NotificationHistory = (props: NotificationHistoryProps) => {
     </>
   );
 };
+interface LanguageMenuProps {
+  // Defaults to 'Change language'
+  changeLanguage?: string;
+  entries: { key: string; display: string }[];
+  // The key of the currently active language, if passed highlighting is enabled
+  currentLanguage: string;
+  onLanguageChange(key: string): void;
+}
 interface Props {
-  menuEntries: Array<MenuEntry>;
+  menuEntries?: Array<MenuEntry>;
   logoutAction?(): void;
-  notificationHistory: false | NotificationHistoryProps;
+  notificationHistory?: NotificationHistoryProps;
   applicationTitle?: string | ReactNode;
+  languageMenu?: LanguageMenuProps;
 }
 
 const TopBar = (props: Props) => {
@@ -125,11 +140,23 @@ const TopBar = (props: Props) => {
     setMenuAnchorEl(menuAnchorEl ? null : event.currentTarget);
   };
 
+  const [languageMenuAnchorEl, setLanguageMenuAnchorEl] = useState<null | HTMLElement>(
+    null,
+  );
+  const languageMenuOpen = Boolean(languageMenuAnchorEl);
+  const handleLanguageMenuClick = (event: MouseEvent<HTMLElement>) => {
+    setLanguageMenuAnchorEl(languageMenuAnchorEl ? null : event.currentTarget);
+  };
+
+  const [currentLanguage, setCurrentLanguage] = useState(
+    props.languageMenu?.currentLanguage,
+  );
+
   return (
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          {props.menuEntries.length !== 0 && (
+          {props.menuEntries !== undefined && props.menuEntries.length !== 0 && (
             <>
               <IconButton aria-label="menu" onClick={handleMenuClick} size="large">
                 <MenuIcon />
@@ -149,6 +176,45 @@ const TopBar = (props: Props) => {
           )}
           {props.notificationHistory && (
             <NotificationHistory {...props.notificationHistory} />
+          )}
+          {props.languageMenu && (
+            <>
+              <Tooltip title={props.languageMenu.changeLanguage || "Change language"}>
+                <IconButton color="inherit" onClick={handleLanguageMenuClick}>
+                  <TranslateIcon />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                anchorEl={languageMenuAnchorEl}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={languageMenuOpen}
+                onClose={() => setLanguageMenuAnchorEl(null)}
+              >
+                {props.languageMenu.entries.map((entry) => (
+                  <MenuItem
+                    key={entry.key}
+                    selected={entry.key === currentLanguage}
+                    onClick={() => {
+                      // `languageMenu` cannot be undefined, otherwise this would not be rendered
+                      (props.languageMenu as LanguageMenuProps).onLanguageChange(
+                        entry.key,
+                      );
+                      setCurrentLanguage(entry.key);
+                    }}
+                  >
+                    {entry.display}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </>
           )}
 
           {props.logoutAction && (

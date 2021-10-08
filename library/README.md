@@ -14,11 +14,21 @@ A standard MUI AppBar with the following props:
   passed function will be called `onClick`.
 - `applicationTitle`: A string or styled `ReactNode` to display the title of your
   application. Use the latter approach if you want it to be a link or add an icon.
-- `notificationHistory:` Either `false` or an object with following props:
+- `notificationHistory:` An optional object with following props to show a history of
+  all notifications in the top right. Requires the component to be inside a
+  `Toastyfier`:
   - `pastNotifications`: Translation of "Past notifications"
   - `noNotificationsYet`: Translation of "No notifications yet"
   - `createdAtFormat(createdAt: number): string`: Function to format the timestamps
     (milliseconds) of the past notifications
+- `languageMenu`: An optional object to enable a language menu in the top right:
+  - `changeLanguage`: Optional string to show inside the tooltip of the icon button,
+    defaults to 'Change language'
+  - `entries`: Array of available languages, the value of `display` will be shown
+  - `currentLanguage`: The key of the active language at the time of rendering, future
+    changes will be tracked internally
+  - `onLanguageChange(key: string):void`: Will be called with the `key` of the selected
+    Language
 
 ## Notification handling
 

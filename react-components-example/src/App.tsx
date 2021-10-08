@@ -84,6 +84,15 @@ const DemoApp = () => {
             noNotificationsYet: "No notifications yet",
             createdAtFormat: (v: number) => new Date(v).toString(),
           }}
+          languageMenu={{
+            entries: [
+              { key: "de", display: "Deutsch" },
+              { key: "en", display: "English" },
+            ],
+            onLanguageChange: (key: string) =>
+              toasty.success(`Switched language to ${key}`),
+            currentLanguage: "en",
+          }}
         />
       </Box>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
