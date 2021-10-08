@@ -44,6 +44,9 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/b1-systems/react-components.git"
@@ -51,5 +54,5 @@
   "scripts": {
     "test": "jest"
   },
-  "version": "0.0.6"
+  "version": "0.0.7"
 }
