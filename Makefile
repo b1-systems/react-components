@@ -67,7 +67,7 @@ test: ## Run tests
 
 .PHONY: publish
 publish: libbuild ## Publish library to registry
-	npm -w library publish
+	npm -w library publish --access public
 
 .PHONY: setup
 setup: ## Setup development environment
