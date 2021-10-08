@@ -10,6 +10,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
 import { BrowserRouter, Route, Link as RouterLink, Switch } from "react-router-dom";
 
 const NotificationButtons = () => {
@@ -67,6 +68,8 @@ const menuEntries: Array<MenuEntry> = [
 
 const DemoApp = () => {
   const { toasty } = useToasty();
+  const [demoLanguage, setDemoLanguage] = useState<"de" | "en">("en");
+  const demoLanguageEntries = [];
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -89,8 +92,13 @@ const DemoApp = () => {
               { key: "de", display: "Deutsch" },
               { key: "en", display: "English" },
             ],
-            onLanguageChange: (key: string) =>
-              toasty.success(`Switched language to ${key}`),
+            onLanguageChange: (key: string) => {
+              const msg =
+                key === "en" ? "Switched to English" : "Sprache auf Deutsch gestellt";
+              toasty.success(msg);
+              // Call your libs function here
+              setDemoLanguage(key as "de" | "en");
+            },
             currentLanguage: "en",
           }}
         />
@@ -102,7 +110,8 @@ const DemoApp = () => {
           <Switch>
             <Route path="/" exact>
               <Typography gutterBottom textAlign="center" variant="h2" component="h4">
-                Main page
+                {/* Insert the call to your i18n lib/framework here */}
+                {demoLanguage === "en" ? "Main page" : "Hauptseite"}
               </Typography>
               <NotificationButtons />
             </Route>

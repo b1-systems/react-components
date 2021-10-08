@@ -203,11 +203,14 @@ const TopBar = (props: Props) => {
                     key={entry.key}
                     selected={entry.key === currentLanguage}
                     onClick={() => {
-                      // `languageMenu` cannot be undefined, otherwise this would not be rendered
-                      (props.languageMenu as LanguageMenuProps).onLanguageChange(
-                        entry.key,
-                      );
-                      setCurrentLanguage(entry.key);
+                      if (entry.key !== currentLanguage) {
+                        // `languageMenu` cannot be undefined, otherwise this would not be rendered
+                        (props.languageMenu as LanguageMenuProps).onLanguageChange(
+                          entry.key,
+                        );
+                        setCurrentLanguage(entry.key);
+                      }
+                      setLanguageMenuAnchorEl(null);
                     }}
                   >
                     {entry.display}
