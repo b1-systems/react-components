@@ -36,12 +36,19 @@ A wrapper around [`react-hot-toast`](https://github.com/timolins/react-hot-toast
 render them as MUI Alerts and to provide a notification history.
 
 To show notifications you need to encapsulate your components inside a `Toastyfier`
-provider component. It takes the following props:
+provider component. It takes the following props, of which most are directly passed
+through to a [`Toaster`](https://react-hot-toast.com/docs/toaster):
 
 - `position`: Where to show the notifications
 - `gutter`: Gap between each notification/toast
-- `slideDirection` (optional): In which directions the notifications should leave the
-  screen. If not passed the default is chosen based on `position`.
+- `slideDirection` (optional, not from `react-hot-toast`): In which directions the
+  notifications should leave the screen. If not passed the default is chosen based on
+  `position`.
+- `reverseOrder` (optional): Whether to show the most recent notification at the bottom
+- `containerStyle` (optional): Add additional `CSS` to every notification. Please notice
+  that we set a default top-margin of 80 if you pass any `top-*` position to show the
+  notifications below our `Topbar`. If you pass any custom styles via this prop this
+  will not be applied and you have to manage everything yourself.
 
 Inside a `Toastyfier` you have access to the `useToasty()` hook which gives you access
 to the following functions:

@@ -130,7 +130,7 @@ const DemoApp = () => {
 
 function App() {
   return (
-    <Toastyfier position={"bottom-right"} gutter={8}>
+    <Toastyfier position={"top-right"} gutter={8}>
       <BrowserRouter>
         <DemoApp />
       </BrowserRouter>

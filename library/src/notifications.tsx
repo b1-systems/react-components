@@ -14,7 +14,7 @@
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
 import { Alert, AlertColor, Slide } from "@mui/material";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { CSSProperties, ReactNode, createContext, useContext, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { Toast, ToastPosition } from "react-hot-toast/dist/core/types";
 interface PastNotification {
@@ -44,11 +44,14 @@ interface ToastyProps {
 
 type SlideDirection = "down" | "left" | "right" | "up";
 
+// most of the entries are taken from 'ToasterProps' from 'react-hot-toast'
 interface Props {
   position: ToastPosition;
   gutter: number;
-  children: ReactNode;
+  containerStyle?: CSSProperties;
+  reverseOrder?: boolean;
   slideDirection?: SlideDirection;
+  children: ReactNode;
 }
 
 const autoSlideDirection = (position: ToastPosition): SlideDirection => {
@@ -132,9 +135,23 @@ const Toastyfier = (props: Props) => {
    * Remove an individual toast or all toasts instanstly.
    */
   toasty.remove = toast.remove;
+
+  // Add additional top margin if the position contaisnt op and no custom
+  // containerStyle is requested to accomodate for the TopBar
+  let containerStyle = undefined;
+  if (props.containerStyle) {
+    containerStyle = props.containerStyle;
+  } else if (props.position.includes("top")) {
+    containerStyle = { top: 80 };
+  }
   return (
     <NotificationContext.Provider value={{ pastNotifications, toasty }}>
-      <Toaster position={props.position} gutter={props.gutter} />
+      <Toaster
+        position={props.position}
+        gutter={props.gutter}
+        reverseOrder={props.reverseOrder}
+        containerStyle={containerStyle}
+      />
       {props.children}
     </NotificationContext.Provider>
   );
