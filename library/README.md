@@ -65,6 +65,31 @@ to the following functions:
 - `pastNotifications`: An array of past notifications which is used to populate the
   Popover inside the Topbar.
 
+## Confirmation dialog
+
+Creating a confirmation dialog over and over in different components can become very
+frustrating since they usually very similar to each other. Wouldn't it be nice if you
+could simply pass your message and callback functions to a hook and let it handle the
+dialog rendering, etc.? `ConfirmationDialog` and `useConfirmationDialog` to the rescue!
+
+First you insert a `ConfirmationDialog` somewhere up in your component hierarchy which
+takes the following props:
+
+- `cancel`: Text to display on the `Cancel` button
+- `confirm`: Text to display on the `Confirm` button
+- `title` (optional): A default title
+
+Inside a child component you have access to the `useConfirmationDialog()` hook which
+gives you access to the `confirm()` which you call with an object:
+
+- `onConfirm(): void`: Function to call if the user clicked the `Confirm` button
+- `msg`: Text or `ReactNode` containing your message/question, e.g. "Really delete the
+  contract?"
+- `onCancel(): void` (optional): Function to call if the user either clicked the
+  `Cancel` button or outside of the dialog to dismiss it
+- `title` (optional): Title of the dialog, overrides the value passed to
+  `ConfirmationDialog`
+
 ## Directory layout
 
 **Do not remove the `index.js` symlink**, it's what makes `make libbuild-dev` possible

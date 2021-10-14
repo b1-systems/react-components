@@ -1,4 +1,11 @@
-import { MenuEntry, Toastyfier, TopBar, useToasty } from "@b1-systems/react-components";
+import {
+  ConfirmationDialog,
+  MenuEntry,
+  Toastyfier,
+  TopBar,
+  useConfirmationDialog,
+  useToasty,
+} from "@b1-systems/react-components";
 import {
   AlertColor,
   Box,
@@ -69,7 +76,9 @@ const menuEntries: Array<MenuEntry> = [
 
 const DemoApp = () => {
   const { toasty } = useToasty();
+  const { confirm } = useConfirmationDialog();
   const [demoLanguage, setDemoLanguage] = useState<"de" | "en">("en");
+
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -124,6 +133,41 @@ const DemoApp = () => {
               <NotificationButtons />
             </Route>
           </Switch>
+          <br />
+          <Grid container justifyContent="space-evenly">
+            <Button
+              variant="contained"
+              onClick={() =>
+                confirm({
+                  msg: "Are you sure you want to proceed? If so, simply press Enter",
+                  onConfirm: () => toasty.success("Confirmation successful"),
+                  onCancel: () => toasty.warning("Dialog cancelled or dismissed"),
+                })
+              }
+            >
+              Confirmation Dialog
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() =>
+                confirm({
+                  title: "Custom title for this dialog",
+                  msg: (
+                    <>
+                      <Typography variant="h4">A styled message</Typography>
+                      <Typography variant="body2">
+                        The title is different from the default one and no `onCancel`
+                        has been passed
+                      </Typography>
+                    </>
+                  ),
+                  onConfirm: () => toasty.success("Confirmation successful again"),
+                })
+              }
+            >
+              Confirmation Dialog with custom title
+            </Button>
+          </Grid>
         </Container>
       </Box>
     </>
@@ -134,7 +178,13 @@ function App() {
   return (
     <Toastyfier position={"top-right"} gutter={8}>
       <BrowserRouter>
-        <DemoApp />
+        <ConfirmationDialog
+          cancel="Cancel"
+          confirm="Confirm"
+          title="Confirmation required"
+        >
+          <DemoApp />
+        </ConfirmationDialog>
       </BrowserRouter>
     </Toastyfier>
   );
