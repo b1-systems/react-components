@@ -13,7 +13,7 @@
  * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.html
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
-import { Alert, AlertColor, Slide } from "@mui/material";
+import { Alert, AlertColor, Box, Slide } from "@mui/material";
 import { CSSProperties, ReactNode, createContext, useContext, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { Toast, ToastPosition } from "react-hot-toast/dist/core/types";
@@ -89,14 +89,16 @@ const Toastyfier = (props: Props) => {
         direction={props.slideDirection || autoSlideDirection(props.position)}
         in={t.visible}
       >
-        <Alert
-          variant="filled"
-          sx={{ maxWidth: 400 }}
-          severity={severity}
-          onClose={toastyProps?.close ? () => toast.dismiss(t.id) : undefined}
-        >
-          {msg}
-        </Alert>
+        <Box sx={{ boxShadow: 10 }}>
+          <Alert
+            variant="filled"
+            sx={{ maxWidth: 400 }}
+            severity={severity}
+            onClose={toastyProps?.close ? () => toast.dismiss(t.id) : undefined}
+          >
+            {msg}
+          </Alert>
+        </Box>
       </Slide>
     ));
   };
