@@ -6,10 +6,15 @@ The following components are available:
 
 A standard MUI AppBar with the following props:
 
-- `menuEntries`: If a non-empty array is passed it will be used to populate a Menu
-  inside a Popover which is attached to a button on the top left. Not all properties of
-  the `MenuEntry` type are already supported yet, take a look at the demo application
-  for exact details.
+- `menuEntries` (incompatible with `menuOnClick`): If a non-empty array is passed it
+  will be used to populate a Menu inside a Popover which is attached to a menu button on
+  the top left. Not all properties of the `MenuEntry` type are already supported yet,
+  take a look at the demo application for exact details.
+- `menuOnClick(): void` (incompatible with `menuEntries`): Pass your own function to
+  execute whenever the menu button is clicked.
+
+  _Note_: If none of the above props is passed no menu button will be rendered at all
+
 - `logoutAction(): void`: If passed a logout button is shown in the top right and the
   passed function will be called `onClick`.
 - `applicationTitle`: A string or styled `ReactNode` to display the title of your

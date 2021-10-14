@@ -58,12 +58,7 @@ export const NotificationHistory = (props: NotificationHistoryProps) => {
   return (
     <>
       <Tooltip title={props.pastNotifications}>
-        <IconButton
-          aria-label="menu"
-          onClick={handleToastHistoryClick}
-          size="large"
-          color="inherit"
-        >
+        <IconButton aria-label="menu" onClick={handleToastHistoryClick} color="inherit">
           <CircleNotificationsIcon />
         </IconButton>
       </Tooltip>
@@ -121,13 +116,25 @@ interface LanguageMenuProps {
   currentLanguage: string;
   onLanguageChange(key: string): void;
 }
-interface Props {
-  menuEntries?: Array<MenuEntry>;
+interface BaseProps {
   logoutAction?(): void;
   notificationHistory?: NotificationHistoryProps;
   applicationTitle?: string | ReactNode;
   languageMenu?: LanguageMenuProps;
 }
+// We can either display our Popover Menu or map a custom function to onClick of the
+// menu button but not both
+interface MenuEntriesProps extends BaseProps {
+  menuEntries?: Array<MenuEntry>;
+  menuOnClick?: never;
+}
+
+interface MenuOnClickProps extends BaseProps {
+  menuEntries?: never;
+  menuOnClick?(): void;
+}
+
+type Props = MenuOnClickProps | MenuEntriesProps;
 
 const TopBar = (props: Props) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
@@ -148,21 +155,29 @@ const TopBar = (props: Props) => {
     props.languageMenu?.currentLanguage,
   );
 
+  const menuEntriesPassed =
+    props.menuEntries !== undefined && props.menuEntries.length !== 0;
+
   return (
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          {props.menuEntries !== undefined && props.menuEntries.length !== 0 && (
+          {(menuEntriesPassed || props.menuOnClick) && (
             <>
-              <IconButton aria-label="menu" onClick={handleMenuClick} size="large">
+              <IconButton
+                aria-label="menu"
+                onClick={props.menuOnClick || handleMenuClick}
+              >
                 <MenuIcon />
               </IconButton>
-              <MenuPopover
-                open={menuOpen}
-                anchorElement={menuAnchorEl}
-                setAnchorElement={setMenuAnchorEl}
-                menuEntries={props.menuEntries}
-              />
+              {props.menuOnClick === undefined && menuEntriesPassed && (
+                <MenuPopover
+                  open={menuOpen}
+                  anchorElement={menuAnchorEl}
+                  setAnchorElement={setMenuAnchorEl}
+                  menuEntries={props.menuEntries as MenuEntry[]}
+                />
+              )}
             </>
           )}
           {props.applicationTitle && (
@@ -219,7 +234,6 @@ const TopBar = (props: Props) => {
           {props.logoutAction && (
             <IconButton
               color="inherit"
-              size="large"
               aria-label="logout"
               onClick={props.logoutAction}
             >

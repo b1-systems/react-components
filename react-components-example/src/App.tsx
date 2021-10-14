@@ -70,13 +70,14 @@ const menuEntries: Array<MenuEntry> = [
 const DemoApp = () => {
   const { toasty } = useToasty();
   const [demoLanguage, setDemoLanguage] = useState<"de" | "en">("en");
-  const demoLanguageEntries = [];
   return (
     <>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <TopBar
           menuEntries={menuEntries}
+          // Incompatible with `menuEntries`, choose one of both
+          //menuOnClick={() => toasty.success("Open your menu, eg Drawer, ")}
           logoutAction={() => toasty.success("Logout complete!")}
           applicationTitle={
             <Link component={RouterLink} to="/" color="inherit">
