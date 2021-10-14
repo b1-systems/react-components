@@ -96,11 +96,7 @@ export const NotificationHistory = (props: NotificationHistoryProps) => {
             pastNotifications
               .sort((a, b) => b.createdAt - a.createdAt)
               .map((notification, index) => (
-                <Alert
-                  severity={notification.severity}
-                  sx={{ m: 1, minWidth: 400 }}
-                  key={index}
-                >
+                <Alert severity={notification.severity} sx={{ m: 1 }} key={index}>
                   <AlertTitle>
                     {props.createdAtFormat(notification.createdAt)}
                   </AlertTitle>

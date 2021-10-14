@@ -21,6 +21,7 @@ const NotificationButtons = () => {
         <Button
           key={index}
           variant="contained"
+          sx={{ m: 2 }}
           // @ts-ignore
           color={severity}
           onClick={() =>
