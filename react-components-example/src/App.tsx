@@ -18,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { BrowserRouter, Route, Link as RouterLink, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link as RouterLink, Routes } from "react-router-dom";
 
 const NotificationButtons = () => {
   const { toasty } = useToasty();
@@ -118,21 +118,41 @@ const DemoApp = () => {
         <Toolbar />
         <Container>
           <br />
-          <Switch>
-            <Route path="/" exact>
-              <Typography gutterBottom textAlign="center" variant="h2" component="h4">
-                {/* Insert the call to your i18n lib/framework here */}
-                {demoLanguage === "en" ? "Main page" : "Hauptseite"}
-              </Typography>
-              <NotificationButtons />
-            </Route>
-            <Route path="/subpage1" exact>
-              <Typography gutterBottom textAlign="center" variant="h2" component="h4">
-                Subpage 1
-              </Typography>
-              <NotificationButtons />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Typography
+                    gutterBottom
+                    textAlign="center"
+                    variant="h2"
+                    component="h4"
+                  >
+                    {/* Insert the call to your i18n lib/framework here */}
+                    {demoLanguage === "en" ? "Main page" : "Hauptseite"}
+                  </Typography>
+                  <NotificationButtons />
+                </>
+              }
+            />
+            <Route
+              path="/subpage1"
+              element={
+                <>
+                  <Typography
+                    gutterBottom
+                    textAlign="center"
+                    variant="h2"
+                    component="h4"
+                  >
+                    Subpage 1
+                  </Typography>
+                  <NotificationButtons />
+                </>
+              }
+            />
+          </Routes>
           <br />
           <Grid container justifyContent="space-evenly">
             <Button
