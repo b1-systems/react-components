@@ -25,4 +25,8 @@ components. Simply run `make run-demo`.
   ```
   @b1-systems:registry=https://npm.pkg.github.com
   ```
+- (Once) Login against the GitHub Package Registry with a Personal Access Token
+  ```
+  npm login --scope=@b1-systems --registry=https://npm.pkg.github.com
+  ```
 - Run `npm install @b1-systems/react-components`
