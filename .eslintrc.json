@@ -5,10 +5,8 @@
   },
   "extends": [
     "react-app",
-    "react-app/jest",
     "plugin:react/recommended",
-    "eslint:recommended",
-    "plugin:jest/recommended"
+    "eslint:recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {

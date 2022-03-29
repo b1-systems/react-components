@@ -1,11 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render consistently with minimal arguments 1`] = `
-<header
-  className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-ivnu1y-MuiPaper-root-MuiAppBar-root"
->
-  <div
-    className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1t29gy6-MuiToolbar-root"
-  />
-</header>
+Array [
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-bcxrb8-MuiAppBar-root{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;box-sizing:border-box;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;position:fixed;z-index:1100;top:0;left:auto;right:0;background-color:#1976d2;color:#fff;z-index:1201;}@media print{.css-bcxrb8-MuiAppBar-root{position:absolute;}}",
+      }
+    }
+    data-emotion="css bcxrb8-MuiAppBar-root"
+  />,
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": ".css-ivnu1y-MuiPaper-root-MuiAppBar-root{background-color:#fff;color:rgba(0, 0, 0, 0.87);-webkit-transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;box-shadow:0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;box-sizing:border-box;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;position:fixed;z-index:1100;top:0;left:auto;right:0;background-color:#1976d2;color:#fff;z-index:1201;}@media print{.css-ivnu1y-MuiPaper-root-MuiAppBar-root{position:absolute;}}",
+      }
+    }
+    data-emotion="css ivnu1y-MuiPaper-root-MuiAppBar-root"
+  />,
+  <header
+    className="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-ivnu1y-MuiPaper-root-MuiAppBar-root"
+  >
+    <style
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": ".css-1t29gy6-MuiToolbar-root{position:relative;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-left:16px;padding-right:16px;min-height:56px;}@media (min-width:600px){.css-1t29gy6-MuiToolbar-root{padding-left:24px;padding-right:24px;}}@media (min-width:0px) and (orientation: landscape){.css-1t29gy6-MuiToolbar-root{min-height:48px;}}@media (min-width:600px){.css-1t29gy6-MuiToolbar-root{min-height:64px;}}",
+        }
+      }
+      data-emotion="css 1t29gy6-MuiToolbar-root"
+    />
+    <div
+      className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-1t29gy6-MuiToolbar-root"
+    />
+  </header>,
+]
 `;

@@ -4,12 +4,12 @@
     "url": "https://github.com/b1-systems/react-components/issues"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.2.0",
-    "react-hot-toast": "^2.1.1"
+    "@mui/icons-material": "^5.5.1",
+    "react-hot-toast": "^2.2.0"
   },
   "description": "Loose collection of React components",
   "devDependencies": {
-    "@types/jest": "^27.0.3"
+    "@types/jest": "^27.4.1"
   },
   "files": [
     "dist/"
