@@ -11,7 +11,9 @@
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
 import {
+  Box,
   Button,
+  CircularProgress,
   Dialog,
   DialogActions,
   DialogContent,
@@ -23,8 +25,8 @@ import { ReactNode, createContext, useContext, useState } from "react";
 interface ConfirmProps {
   title?: string;
   msg: string | ReactNode;
-  onConfirm(): void;
-  onCancel?(): void;
+  onConfirm(): Promise<any>;
+  onCancel?(): Promise<any>;
 }
 
 interface ContextProps {
@@ -41,8 +43,13 @@ interface Props {
 
 const ConfirmationDialog = (props: Props) => {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [onCancelFunc, setOnCancelFunc] = useState<(() => void) | undefined>(undefined);
-  const [onConfirmFunc, setOnConfirmFunc] = useState<() => void>(() => () => {});
+  const [onCancelFunc, setOnCancelFunc] = useState<(() => Promise<void>) | undefined>(
+    undefined,
+  );
+  const [onConfirmFunc, setOnConfirmFunc] = useState<() => Promise<any>>(
+    () => () => Promise.resolve(),
+  );
+  const [confirmFunctionRunning, setConfirmFunctionRunning] = useState(false);
   const [title, setTitle] = useState("");
   const [msg, setMsg] = useState<string | ReactNode>("");
 
@@ -52,8 +59,9 @@ const ConfirmationDialog = (props: Props) => {
       throw new Error("The dialog is already in use");
     }
     // reset actions and content
-    setOnConfirmFunc(() => () => {});
+    setOnConfirmFunc(() => () => Promise.resolve());
     setOnCancelFunc(undefined);
+    setConfirmFunctionRunning(false);
     setTitle(props.title || "");
     // no need to override `msg` since it has to be passed through `confirmProps`
 
@@ -66,8 +74,13 @@ const ConfirmationDialog = (props: Props) => {
   };
 
   const handleClose = () => {
-    setDialogOpen(false);
-    onCancelFunc && onCancelFunc();
+    if (onCancelFunc) {
+      onCancelFunc().finally(() => {
+        setDialogOpen(false);
+      });
+    } else {
+      setDialogOpen(false);
+    }
   };
 
   return (
@@ -78,16 +91,35 @@ const ConfirmationDialog = (props: Props) => {
           <DialogContentText>{msg}</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{props.cancel}</Button>
-          <Button
-            onClick={() => {
-              onConfirmFunc();
-              setDialogOpen(false);
-            }}
-            autoFocus
-          >
-            {props.confirm}
+          <Button disabled={confirmFunctionRunning} onClick={handleClose}>
+            {props.cancel}
           </Button>
+          <Box sx={{ m: 1, position: "relative" }}>
+            <Button
+              disabled={confirmFunctionRunning}
+              onClick={() => {
+                setConfirmFunctionRunning(true);
+                onConfirmFunc().finally(() => {
+                  setDialogOpen(false);
+                });
+              }}
+              autoFocus
+            >
+              {props.confirm}
+            </Button>
+            {confirmFunctionRunning && (
+              <CircularProgress
+                size={24}
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  marginTop: "-12px",
+                  marginLeft: "-12px",
+                }}
+              />
+            )}
+          </Box>
         </DialogActions>
       </Dialog>
       {props.children}

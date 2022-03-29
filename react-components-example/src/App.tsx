@@ -159,9 +159,17 @@ const DemoApp = () => {
               variant="contained"
               onClick={() =>
                 confirm({
-                  msg: "Are you sure you want to proceed? If so, simply press Enter",
-                  onConfirm: () => toasty.success("Confirmation successful"),
-                  onCancel: () => toasty.warning("Dialog cancelled or dismissed"),
+                  msg: `Are you sure you want to proceed? If so, simply press Enter. The
+                  dialog will only close once the onConfirm function has finished. This
+                  one for example will sleep for 2 seconds. While this happens the
+                  Cancel button is deactivated and the confirm button turns into a
+                  spinner.`,
+                  onConfirm: () =>
+                    new Promise((resolve) => setTimeout(resolve, 2000)).then(() => {
+                      toasty.success("Confirmation successful");
+                    }),
+                  onCancel: () =>
+                    Promise.resolve(toasty.warning("Dialog cancelled or dismissed")),
                 })
               }
             >
@@ -181,7 +189,8 @@ const DemoApp = () => {
                       </Typography>
                     </>
                   ),
-                  onConfirm: () => toasty.success("Confirmation successful again"),
+                  onConfirm: () =>
+                    Promise.resolve(toasty.success("Confirmation successful again")),
                 })
               }
             >

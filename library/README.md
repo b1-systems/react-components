@@ -68,9 +68,10 @@ to the following functions:
 ## Confirmation dialog
 
 Creating a confirmation dialog over and over in different components can become very
-frustrating since they usually very similar to each other. Wouldn't it be nice if you
-could simply pass your message and callback functions to a hook and let it handle the
-dialog rendering, etc.? `ConfirmationDialog` and `useConfirmationDialog` to the rescue!
+frustrating since they are usually very similar to each other. Wouldn't it be nice if
+you could simply pass your message and callback functions to a hook and let it handle
+the dialog rendering, etc.? `ConfirmationDialog` and `useConfirmationDialog` to the
+rescue!
 
 First you insert a `ConfirmationDialog` somewhere up in your component hierarchy which
 takes the following props:
@@ -80,13 +81,19 @@ takes the following props:
 - `title` (optional): A default title
 
 Inside a child component you have access to the `useConfirmationDialog()` hook which
-gives you access to the `confirm()` which you call with an object:
+gives you access to the `confirm()` function which you call with an object:
 
-- `onConfirm(): void`: Function to call if the user clicked the `Confirm` button
+- `onConfirm(): Promise<any>`: Function to call if the user clicked the `Confirm`
+  button. Once the promises finishes either successful or with an error (we use
+  `.finally`) the dialog closes. As long as `onConfirm` is running both buttons,
+  `Cancel` and `Confirm`, are disabled and a spinner is shown on top of the latter. The
+  code has been taken from
+  [here](https://mui.com/components/progress/#interactive-integration=).
 - `msg`: Text or `ReactNode` containing your message/question, e.g. "Really delete the
   contract?"
-- `onCancel(): void` (optional): Function to call if the user either clicked the
-  `Cancel` button or outside of the dialog to dismiss it
+- `onCancel(): Promise<any>` (optional): Function to call if the user either clicked the
+  `Cancel` button or outside of the dialog to dismiss it. The dialog closes once it has
+  run through.
 - `title` (optional): Title of the dialog, overrides the value passed to
   `ConfirmationDialog`
 
