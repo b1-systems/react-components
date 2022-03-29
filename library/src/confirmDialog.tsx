@@ -75,7 +75,7 @@ const ConfirmationDialog = (props: Props) => {
 
   const handleClose = () => {
     if (onCancelFunc) {
-      onCancelFunc().finally(() => {
+      onCancelFunc().then(() => {
         setDialogOpen(false);
       });
     } else {
@@ -99,7 +99,7 @@ const ConfirmationDialog = (props: Props) => {
               disabled={confirmFunctionRunning}
               onClick={() => {
                 setConfirmFunctionRunning(true);
-                onConfirmFunc().finally(() => {
+                onConfirmFunc().then(() => {
                   setDialogOpen(false);
                 });
               }}
