@@ -1,3 +1,5 @@
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { IconButton } from "@mui/material";
 import { shallow } from "enzyme";
 import renderer from "react-test-renderer";
 
@@ -9,7 +11,9 @@ it("should render consistently with minimal arguments", () => {
 });
 
 describe("Correct functionality", () => {
-  const simplestTopbar = <TopBar applicationTitle="My Test Application" />;
+  const simplestTopbar = (
+    <TopBar applicationTitle="My Test Application" helpLink="https://example.com" />
+  );
   const simplestTopbarShallow = shallow(simplestTopbar);
   it("should show the passed application title", () => {
     expect(simplestTopbarShallow.text()).toEqual("My Test Application");
@@ -24,5 +28,14 @@ describe("Correct functionality", () => {
         />,
       ),
     ).toEqual(false);
+  });
+  it("Should show a help icon if any helpLink is passed", () => {
+    expect(
+      simplestTopbarShallow.containsMatchingElement(
+        <IconButton color="inherit" href="https://example.com" target="_blank">
+          <HelpOutlineIcon />
+        </IconButton>,
+      ),
+    ).toBeTruthy();
   });
 });

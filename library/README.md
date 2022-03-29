@@ -19,6 +19,8 @@ A standard MUI AppBar with the following props:
   passed function will be called `onClick`.
 - `applicationTitle`: A string or styled `ReactNode` to display the title of your
   application. Use the latter approach if you want it to be a link or add an icon.
+- `helpLink`: An optional URL which will be opened in a new tab when the help icon, only
+  shown if any value is passed, is clicked.
 - `notificationHistory:` An optional object with following props to show a history of
   all notifications in the top right. Requires the component to be inside a
   `Toastyfier`:

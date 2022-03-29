@@ -1,5 +1,6 @@
 import { LogoutOutlined } from "@mui/icons-material";
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import TranslateIcon from "@mui/icons-material/Translate";
 /*
@@ -121,6 +122,7 @@ interface BaseProps {
   notificationHistory?: NotificationHistoryProps;
   applicationTitle?: string | ReactNode;
   languageMenu?: LanguageMenuProps;
+  helpLink?: string;
 }
 // We can either display our Popover Menu or map a custom function to onClick of the
 // menu button but not both
@@ -184,6 +186,11 @@ const TopBar = (props: Props) => {
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
               {props.applicationTitle}
             </Typography>
+          )}
+          {props.helpLink && (
+            <IconButton color="inherit" href={props.helpLink} target="_blank">
+              <HelpOutlineIcon />
+            </IconButton>
           )}
           {props.notificationHistory && (
             <NotificationHistory {...props.notificationHistory} />

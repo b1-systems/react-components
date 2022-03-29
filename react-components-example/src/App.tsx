@@ -93,6 +93,7 @@ const DemoApp = () => {
               Demo Application
             </Link>
           }
+          helpLink={"https://github.com/b1-systems/react-components"}
           notificationHistory={{
             pastNotifications: "Past Notifications",
             noNotificationsYet: "No notifications yet",
