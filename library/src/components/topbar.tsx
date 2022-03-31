@@ -1,8 +1,3 @@
-import { LogoutOutlined } from "@mui/icons-material";
-import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import MenuIcon from "@mui/icons-material/Menu";
-import TranslateIcon from "@mui/icons-material/Translate";
 /*
  * Simple Topbar with the following (mostly optional) features:
  *
@@ -13,14 +8,22 @@ import TranslateIcon from "@mui/icons-material/Translate";
  *   from `notications.tsx`
  * - Logout-Button with custom action
  *
- * @copyright: B1 Systems GmbH <info@b1-systems.de>, 2021
+ * @copyright: B1 Systems GmbH <info@b1-systems.de>, 2022
  * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.html
- * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
+ * @author Tilman Lüttje <luettje@b1-systems.de>, 2022
  */
+import { LogoutOutlined } from "@mui/icons-material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import MenuIcon from "@mui/icons-material/Menu";
+import TranslateIcon from "@mui/icons-material/Translate";
 import {
   Alert,
   AlertTitle,
   AppBar,
+  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -109,12 +112,19 @@ export const NotificationHistory = (props: NotificationHistoryProps) => {
     </>
   );
 };
+interface LanguageEntry {
+  key: string;
+  display: string;
+}
 interface LanguageMenuProps {
   // Defaults to 'Change language'
   changeLanguage?: string;
-  entries: { key: string; display: string }[];
+  entries: LanguageEntry[];
   // The key of the currently active language, if passed highlighting is enabled
   currentLanguage: string;
+  // If passed the `display` prop of the the currently selected language will be shown
+  // instead of the generic icon
+  showCurrentLanguageInsteadOfIcon?: boolean;
   onLanguageChange(key: string): void;
 }
 interface BaseProps {
@@ -154,7 +164,11 @@ const TopBar = (props: Props) => {
   };
 
   const [currentLanguage, setCurrentLanguage] = useState(
-    props.languageMenu?.currentLanguage,
+    props.languageMenu?.currentLanguage
+      ? props.languageMenu.entries.find(
+          (value) => value.key === props.languageMenu?.currentLanguage,
+        )
+      : undefined,
   );
 
   const menuEntriesPassed =
@@ -187,20 +201,26 @@ const TopBar = (props: Props) => {
               {props.applicationTitle}
             </Typography>
           )}
-          {props.helpLink && (
-            <IconButton color="inherit" href={props.helpLink} target="_blank">
-              <HelpOutlineIcon />
-            </IconButton>
-          )}
-          {props.notificationHistory && (
-            <NotificationHistory {...props.notificationHistory} />
-          )}
           {props.languageMenu && (
             <>
               <Tooltip title={props.languageMenu.changeLanguage || "Change language"}>
-                <IconButton color="inherit" onClick={handleLanguageMenuClick}>
-                  <TranslateIcon />
-                </IconButton>
+                {props.languageMenu.showCurrentLanguageInsteadOfIcon ? (
+                  <Button
+                    color="inherit"
+                    onClick={handleLanguageMenuClick}
+                    endIcon={
+                      languageMenuOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />
+                    }
+                  >
+                    <Typography variant="h6" sx={{ mt: 0.5 }}>
+                      {currentLanguage?.display}
+                    </Typography>
+                  </Button>
+                ) : (
+                  <IconButton color="inherit" onClick={handleLanguageMenuClick}>
+                    <TranslateIcon />
+                  </IconButton>
+                )}
               </Tooltip>
               <Menu
                 anchorEl={languageMenuAnchorEl}
@@ -219,14 +239,15 @@ const TopBar = (props: Props) => {
                 {props.languageMenu.entries.map((entry) => (
                   <MenuItem
                     key={entry.key}
-                    selected={entry.key === currentLanguage}
+                    selected={entry.key === currentLanguage?.key}
                     onClick={() => {
-                      if (entry.key !== currentLanguage) {
-                        // `languageMenu` cannot be undefined, otherwise this would not be rendered
+                      if (entry.key !== currentLanguage?.key) {
+                        // `languageMenu` cannot be undefined, otherwise this would not
+                        // be rendered
                         (props.languageMenu as LanguageMenuProps).onLanguageChange(
                           entry.key,
                         );
-                        setCurrentLanguage(entry.key);
+                        setCurrentLanguage(entry);
                       }
                       setLanguageMenuAnchorEl(null);
                     }}
@@ -236,6 +257,14 @@ const TopBar = (props: Props) => {
                 ))}
               </Menu>
             </>
+          )}
+          {props.helpLink && (
+            <IconButton color="inherit" href={props.helpLink} target="_blank">
+              <HelpOutlineIcon />
+            </IconButton>
+          )}
+          {props.notificationHistory && (
+            <NotificationHistory {...props.notificationHistory} />
           )}
 
           {props.logoutAction && (

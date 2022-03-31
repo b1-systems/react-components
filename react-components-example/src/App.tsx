@@ -104,6 +104,7 @@ const DemoApp = () => {
               { key: "de", display: "Deutsch" },
               { key: "en", display: "English" },
             ],
+            // showCurrentLanguageInsteadOfIcon: true,
             onLanguageChange: (key: string) => {
               const msg =
                 key === "en" ? "Switched to English" : "Sprache auf Deutsch gestellt";
