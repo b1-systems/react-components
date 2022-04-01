@@ -36,6 +36,8 @@ A standard MUI AppBar with the following props:
     changes will be tracked internally
   - `onLanguageChange(key: string):void`: Will be called with the `key` of the selected
     Language
+  - `showCurrentLanguageInsteadOfIcon`: If passed the `display` prop of the currently
+    selected language will be shown instead of the generic icon
 
 ## Notification handling
 

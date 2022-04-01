@@ -181,7 +181,9 @@ const DemoApp = () => {
               variant="contained"
               onClick={() =>
                 confirm({
-                  title: "Custom title for this dialog",
+                  title: (
+                    <Typography color="blue">Custom title for this dialog</Typography>
+                  ),
                   msg: (
                     <>
                       <Typography variant="h4">A styled message</Typography>

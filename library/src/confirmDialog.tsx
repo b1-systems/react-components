@@ -23,7 +23,7 @@ import {
 import { ReactNode, createContext, useContext, useState } from "react";
 
 interface ConfirmProps {
-  title?: string;
+  title?: string | ReactNode;
   msg: string | ReactNode;
   onConfirm(): Promise<any>;
   onCancel?(): Promise<any>;
@@ -35,7 +35,7 @@ interface ContextProps {
 
 const ConfirmationDialogContext = createContext<ContextProps | undefined>(undefined);
 interface Props {
-  title?: string;
+  title?: string | ReactNode;
   cancel: string;
   confirm: string;
   children: ReactNode;
@@ -50,7 +50,7 @@ const ConfirmationDialog = (props: Props) => {
     () => () => Promise.resolve(),
   );
   const [confirmFunctionRunning, setConfirmFunctionRunning] = useState(false);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState<string | ReactNode>("");
   const [msg, setMsg] = useState<string | ReactNode>("");
 
   const confirm = (confirmProps: ConfirmProps) => {
