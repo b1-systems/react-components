@@ -9,7 +9,7 @@
   },
   "description": "Loose collection of React components",
   "devDependencies": {
-    "@types/jest": "^27.4.1"
+    "@types/jest": "^28.1.3"
   },
   "files": [
     "dist/"
