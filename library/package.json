@@ -4,13 +4,10 @@
     "url": "https://github.com/b1-systems/react-components/issues"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.5.1",
-    "react-hot-toast": "^2.2.0"
+    "@mui/icons-material": "^5.8.4",
+    "react-hot-toast": "^2.3.0"
   },
   "description": "Loose collection of React components",
-  "devDependencies": {
-    "@types/jest": "^27.4.1"
-  },
   "files": [
     "dist/"
   ],
@@ -22,10 +19,7 @@
     "coverageProvider": "v8",
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    }
+    ]
   },
   "keywords": [
     "react",
@@ -37,12 +31,12 @@
   "module": "./dist/esm/index.js",
   "name": "@b1-systems/react-components",
   "peerDependencies": {
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "@mui/material": "^5",
-    "react": "^17",
-    "react-dom": "^17",
-    "react-router-dom": "^6"
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
   },
   "publishConfig": {
     "access": "public"

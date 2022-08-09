@@ -15,8 +15,7 @@
  */
 import { Alert, AlertColor, Box, Slide } from "@mui/material";
 import { CSSProperties, ReactNode, createContext, useContext, useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
-import { Toast, ToastPosition } from "react-hot-toast/dist/core/types";
+import { Toast, ToastPosition, Toaster, toast } from "react-hot-toast";
 interface PastNotification {
   msg: string;
   severity: AlertColor;
@@ -67,6 +66,7 @@ const autoSlideDirection = (position: ToastPosition): SlideDirection => {
     case "bottom-center":
       return "up";
   }
+  return "up";
 };
 
 const Toastyfier = (props: Props) => {

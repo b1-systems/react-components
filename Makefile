@@ -63,7 +63,7 @@ libbuild-dev: ## Run tsc in watcher mode
 
 .PHONY: test
 test: ## Run tests
-	npm -w library run test
+	npm -w library run test -- --passWithNoTests
 
 .PHONY: publish
 publish: libbuild ## Publish library to registry
