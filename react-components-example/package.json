@@ -11,6 +11,7 @@
       "not op_mini all"
     ]
   },
+  "license": "MIT",
   "dependencies": {
     "@b1-systems/react-components": "*",
     "@emotion/react": "^11.10.0",

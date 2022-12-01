@@ -26,7 +26,7 @@
     "material-ui",
     "mui"
   ],
-  "license": "LGPL-3.0-or-later",
+  "license": "LGPL-2.1-only",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "name": "@b1-systems/react-components",
