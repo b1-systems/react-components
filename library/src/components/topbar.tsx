@@ -33,11 +33,9 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { MouseEvent, ReactNode, useState } from "react";
+import { type MouseEvent, type ReactNode, useState } from "react";
 
 import { useToasty } from "../notifications";
-import MenuPopover from "./menuPopover";
-import { MenuEntry } from "./types";
 
 interface NotificationHistoryProps {
   pastNotifications: string;
@@ -94,8 +92,12 @@ export const NotificationHistory = (props: NotificationHistoryProps) => {
           {pastNotifications.length ? (
             pastNotifications
               .sort((a, b) => b.createdAt - a.createdAt)
-              .map((notification, index) => (
-                <Alert severity={notification.severity} sx={{ m: 1 }} key={index}>
+              .map((notification) => (
+                <Alert
+                  severity={notification.severity}
+                  sx={{ m: 1 }}
+                  key={notification.createdAt}
+                >
                   <AlertTitle>
                     {props.createdAtFormat(notification.createdAt)}
                   </AlertTitle>
@@ -127,26 +129,14 @@ interface LanguageMenuProps {
   showCurrentLanguageInsteadOfIcon?: boolean;
   onLanguageChange(key: string): void;
 }
-interface BaseProps {
+interface Props {
   logoutAction?(): void;
   notificationHistory?: NotificationHistoryProps;
   applicationTitle?: string | ReactNode;
   languageMenu?: LanguageMenuProps;
   helpLink?: string;
-}
-// We can either display our Popover Menu or map a custom function to onClick of the
-// menu button but not both
-interface MenuEntriesProps extends BaseProps {
-  menuEntries?: Array<MenuEntry>;
-  menuOnClick?: never;
-}
-
-interface MenuOnClickProps extends BaseProps {
-  menuEntries?: never;
   menuOnClick?(): void;
 }
-
-type Props = MenuOnClickProps | MenuEntriesProps;
 
 const TopBar = (props: Props) => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
@@ -171,14 +161,11 @@ const TopBar = (props: Props) => {
       : undefined,
   );
 
-  const menuEntriesPassed =
-    props.menuEntries !== undefined && props.menuEntries.length !== 0;
-
   return (
     <>
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          {(menuEntriesPassed || props.menuOnClick) && (
+          {props.menuOnClick && (
             <>
               <IconButton
                 aria-label="menu"
@@ -186,14 +173,6 @@ const TopBar = (props: Props) => {
               >
                 <MenuIcon />
               </IconButton>
-              {props.menuOnClick === undefined && menuEntriesPassed && (
-                <MenuPopover
-                  open={menuOpen}
-                  anchorElement={menuAnchorEl}
-                  setAnchorElement={setMenuAnchorEl}
-                  menuEntries={props.menuEntries as MenuEntry[]}
-                />
-              )}
             </>
           )}
           {props.applicationTitle && (

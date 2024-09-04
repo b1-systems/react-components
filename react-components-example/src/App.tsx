@@ -1,18 +1,17 @@
 import {
   ConfirmationDialog,
-  MenuEntry,
   Toastyfier,
   TopBar,
   useConfirmationDialog,
   useToasty,
 } from "@b1-systems/react-components";
 import {
-  AlertColor,
+  type AlertColor,
   Box,
   Button,
   Container,
   CssBaseline,
-  Grid,
+  Grid2,
   Link,
   Toolbar,
   Typography,
@@ -23,10 +22,10 @@ import { BrowserRouter, Route, Link as RouterLink, Routes } from "react-router-d
 const NotificationButtons = () => {
   const { toasty } = useToasty();
   return (
-    <Grid container justifyContent="space-evenly">
-      {["success", "info", "warning", "error"].map((severity, index) => (
+    <Grid2 container justifyContent="space-evenly">
+      {["success", "info", "warning", "error"].map((severity) => (
         <Button
-          key={index}
+          key={severity}
           variant="contained"
           sx={{ m: 2 }}
           // @ts-ignore
@@ -40,39 +39,9 @@ const NotificationButtons = () => {
           {`${severity.toUpperCase()} notification`}
         </Button>
       ))}
-    </Grid>
+    </Grid2>
   );
 };
-
-const menuEntries: Array<MenuEntry> = [
-  {
-    entryId: "subpage1_category",
-    type: "entry",
-    parent: "",
-    caption: "Category 1",
-    action: "router",
-    targetUrl: "/subpage1",
-    icon: "",
-  },
-  {
-    entryId: "subpage1_entry",
-    type: "entry",
-    parent: "subpage1_category",
-    caption: "Entry 1",
-    action: "router",
-    targetUrl: "/subpage1",
-    icon: "",
-  },
-  {
-    entryId: "mainpage",
-    type: "entry",
-    parent: "",
-    caption: "Mainpage",
-    action: "router",
-    targetUrl: "/",
-    icon: "",
-  },
-];
 
 const DemoApp = () => {
   const { toasty } = useToasty();
@@ -84,9 +53,7 @@ const DemoApp = () => {
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
         <TopBar
-          menuEntries={menuEntries}
-          // Incompatible with `menuEntries`, choose one of both
-          //menuOnClick={() => toasty.success("Open your menu, eg Drawer, ")}
+          menuOnClick={() => toasty.success("Open your menu, eg Drawer, ")}
           logoutAction={() => toasty.success("Logout complete!")}
           applicationTitle={
             <Link component={RouterLink} to="/" color="inherit">
@@ -156,7 +123,7 @@ const DemoApp = () => {
             />
           </Routes>
           <br />
-          <Grid container justifyContent="space-evenly">
+          <Grid2 container justifyContent="space-evenly">
             <Button
               variant="contained"
               onClick={() =>
@@ -200,7 +167,7 @@ const DemoApp = () => {
             >
               Confirmation Dialog with custom title
             </Button>
-          </Grid>
+          </Grid2>
         </Container>
       </Box>
     </>

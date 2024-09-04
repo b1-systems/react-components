@@ -7,11 +7,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
@@ -28,7 +24,5 @@
     "src/**/__tests__",
     "src/setupTests.*"
   ],
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

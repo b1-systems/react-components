@@ -13,9 +13,15 @@
  * @license LGPLv3+, http://www.gnu.org/licenses/lgpl-3.0.html
  * @author Tilman Lüttje <luettje@b1-systems.de>, 2021
  */
-import { Alert, AlertColor, Box, Slide } from "@mui/material";
-import { CSSProperties, ReactNode, createContext, useContext, useState } from "react";
-import { Toast, ToastPosition, Toaster, toast } from "react-hot-toast";
+import { Alert, type AlertColor, Box, Slide } from "@mui/material";
+import {
+  type CSSProperties,
+  type ReactNode,
+  createContext,
+  useContext,
+  useState,
+} from "react";
+import { type Toast, type ToastPosition, Toaster, toast } from "react-hot-toast";
 interface PastNotification {
   msg: string;
   severity: AlertColor;

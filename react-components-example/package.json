@@ -5,11 +5,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"]
   },
   "license": "MIT",
   "dependencies": {
@@ -24,9 +20,7 @@
     "react-scripts": "5.0.1"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+    "extends": ["react-app"]
   },
   "name": "react-components-example",
   "private": true,

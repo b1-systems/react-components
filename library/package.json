@@ -8,24 +8,16 @@
     "react-hot-toast": "^2.4.1"
   },
   "description": "Loose collection of React components",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "homepage": "https://github.com/b1-systems/react-components#readme",
   "jest": {
     "clearMocks": true,
     "collectCoverage": true,
     "coverageDirectory": "coverage",
     "coverageProvider": "v8",
-    "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
-    ]
+    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"]
   },
-  "keywords": [
-    "react",
-    "material-ui",
-    "mui"
-  ],
+  "keywords": ["react", "material-ui", "mui"],
   "license": "LGPL-2.1-only",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",

@@ -20,12 +20,14 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { type ReactNode, createContext, useContext, useState } from "react";
 
 interface ConfirmProps {
   title?: string | ReactNode;
   msg: string | ReactNode;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   onConfirm(): Promise<any>;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   onCancel?(): Promise<any>;
 }
 
@@ -46,6 +48,7 @@ const ConfirmationDialog = (props: Props) => {
   const [onCancelFunc, setOnCancelFunc] = useState<(() => Promise<void>) | undefined>(
     undefined,
   );
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   const [onConfirmFunc, setOnConfirmFunc] = useState<() => Promise<any>>(
     () => () => Promise.resolve(),
   );

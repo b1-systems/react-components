@@ -16,19 +16,19 @@ clean: ## Remove all build and dist folders
 SRC_DIRS=library/src react-components-example/src
 
 .PHONY: format
-format: ## Run formatters in write mode: prettier
-	prettier --write ${SRC_DIRS}
+format: ## Run formatters in write mode: biome
+	biome format --write ${SRC_DIRS}
 
 .PHONY: check
 check: format-check ts-check lint ## Run all checks/linters
 
 .PHONY: format-check
-format-check: ## Run formatters in check mode: prettier
-	prettier --check ${SRC_DIRS}
+format-check: ## Run formatters in check mode: biome
+	biome format ${SRC_DIRS}
 
 .PHONY: lint
-lint: ## Run linters: eslint
-	eslint ${SRC_DIRS} --cache --ext .js,.tsx,.ts,.json
+lint: ## Run linters: biome
+	biome lint
 
 .PHONY: ts-check
 ts-check: ## Run tsc in check mode
