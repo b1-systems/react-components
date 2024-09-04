@@ -4,8 +4,8 @@
     "url": "https://github.com/b1-systems/react-components/issues"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.8.4",
-    "react-hot-toast": "^2.3.0"
+    "@mui/icons-material": "^6.0.2",
+    "react-hot-toast": "^2.4.1"
   },
   "description": "Loose collection of React components",
   "files": [
@@ -31,12 +31,12 @@
   "module": "./dist/esm/index.js",
   "name": "@b1-systems/react-components",
   "peerDependencies": {
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
-    "@mui/material": "^5.10.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.3.0"
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1"
   },
   "publishConfig": {
     "access": "public"
