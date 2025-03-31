@@ -4,7 +4,7 @@
     "url": "https://github.com/b1-systems/react-components/issues"
   },
   "dependencies": {
-    "@mui/icons-material": "^6.0.2",
+    "@mui/icons-material": "^7.0.1",
     "react-hot-toast": "^2.4.1"
   },
   "description": "Loose collection of React components",
